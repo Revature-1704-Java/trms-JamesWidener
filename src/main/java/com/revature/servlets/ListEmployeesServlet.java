@@ -9,30 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.dao.TRDAO;
 
-public class AdminLoginServlet extends HttpServlet {
+public class ListEmployeesServlet extends HttpServlet {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	//public static boolean adminLoggedIn = false;
-	
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
 		
 		TRDAO dao = new TRDAO();
-		
 		response.setContentType("text/html");  
 		response.setCharacterEncoding("UTF-8"); 
+		response.getWriter().write("All " + dao.listAllEmployees());
 		
-		if (dao.adminLogIn(username, password)) {
-			//adminLoggedIn = true;
-			response.getWriter().write("Welcome, " + username + ".");
-		}
-		else
-			response.getWriter().write("Wrong username or password: \"" + username + "\" \"" + password + "\"");
 	}
-
 }

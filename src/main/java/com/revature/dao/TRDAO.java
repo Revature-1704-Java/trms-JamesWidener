@@ -13,13 +13,6 @@ public class TRDAO {
 		
 		try (Connection conn = ConnectionUtil.getConnection()) {
 			
-			/*String sql = "SELECT AdminUsername FROM AdminInfo WHERE AdminInfoID = 1";
-			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
-			if (rs.next())
-				return rs.getString("AdminUsername");
-			else return "No result set";*/
-			
 			String sql = "SELECT AdminInfoID FROM AdminInfo WHERE AdminUsername = ? AND AdminPassword = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
@@ -36,7 +29,37 @@ public class TRDAO {
 			ex.getMessage();
 			ex.printStackTrace();
 			return false;
-			//return "";
+		}
+	}
+	
+	public String listAllEmployees() {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String sql = "SELECT FirstName, LastName FROM Employee";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			String allEmployees = "";
+			boolean firstLoop = true;
+			
+			//if (rs.next() == false) return "No employees in the database";
+			
+			while (rs.next()) {
+				if (firstLoop) {
+					allEmployees += "Employees: " + rs.getString("FirstName") + " " + rs.getString("LastName");
+					firstLoop = false;
+				}
+				else {
+					allEmployees += ", " + rs.getString("FirstName") + " " + rs.getString("LastName");
+				}
+			}
+			return allEmployees;
+		} catch (Exception ex) {
+			ex.getMessage();
+			ex.printStackTrace();
+			return "Exception thrown";
 		}
 	}
 }
