@@ -3,8 +3,9 @@
 <html>
 
 <head>
-	<script src="index.js"></script>
 	<script src="jsTest.js"></script>
+	<script src="hello.js"></script>
+	<script src="adminLogin.js"></script>
 </head>
 
 <body>
@@ -22,6 +23,17 @@
 	<input type="button" id="helloButton" onclick="helloFunction()" value="Submit" />
 	<br/>
 	<div id="hello_text"></div>
+</form>
+<form>
+	<label for="adminUsername">Username</label>
+	<input type="text" id="adminUsername" />
+	<br/>
+	<label for="adminPassword">Password</label>
+	<input type="text" id="adminPassword" />
+	<br/>
+	<input type="button" id="adminLoginSubmit" onclick="adminLoginFunction()" value="Submit" />
+	<br/>
+	<div id="admin_login_output"></div>
 </form>
 </body>
 </body>

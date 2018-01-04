@@ -13,6 +13,10 @@
 		<servlet-name>HelloServlet</servlet-name>
 		<servlet-class>com.revature.servlets.HelloServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>AdminLoginServlet</servlet-name>
+		<servlet-class>com.revature.servlets.AdminLoginServlet</servlet-class>
+	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>FirstServlet</servlet-name>
@@ -22,5 +26,10 @@
 		<servlet-name>HelloServlet</servlet-name>
 		<url-pattern>/helloservlet</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdminLoginServlet</servlet-name>
+		<url-pattern>/adminlogin</url-pattern>
+	</servlet-mapping>
+
 
 </web-app>
