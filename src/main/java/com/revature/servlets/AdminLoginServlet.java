@@ -24,12 +24,12 @@ public class AdminLoginServlet extends HttpServlet {
 		
 		response.setContentType("text/html");  
 		response.setCharacterEncoding("UTF-8"); 
-		/*
+		
 		if (dao.adminLogIn(username, password))
 			response.getWriter().write("Welcome, " + username + ".");
 		else
-			response.getWriter().write("Wrong username or password: \"" + username + "\" \"" + password + "\"");*/
-		response.getWriter().write(dao.adminLogIn(username, password));
+			response.getWriter().write("Wrong username or password: \"" + username + "\" \"" + password + "\"");
+		/*response.getWriter().write(dao.adminLogIn(username, password));*/
 	}
 
 }
