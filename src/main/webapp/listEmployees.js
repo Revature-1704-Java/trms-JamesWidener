@@ -10,6 +10,8 @@ function listEmployeesFunction() {
     	 document.getElementById("list_employees_output").innerHTML = this.responseText;
     }
   };
-  xhr.open("GET", "listemployees", true);
+  username = document.getElementById('currentAdminUsername').value;
+  password = document.getElementById('currentAdminPassword').value;
+  xhr.open("GET", "listemployees?username=" + username + "&password=" + password, true);
   xhr.send();
 }
