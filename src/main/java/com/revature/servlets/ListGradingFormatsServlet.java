@@ -9,27 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.dao.TRDAO;
 
-public class EmployeeLoginServlet extends HttpServlet {
+public class ListGradingFormatsServlet extends HttpServlet {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		
-		TRDAO dao = new TRDAO();
-		
-		response.setContentType("text/html");  
-		response.setCharacterEncoding("UTF-8"); 
-		
-		if (dao.employeeLogIn(email, password) != -1) {
-			response.getWriter().write("Logged in.");
-		}
-		else
-			response.getWriter().write("Wrong email or password: \"" + email + "\" \"" + password + "\"");
-	}
 
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		TRDAO dao = new TRDAO();
+		response.setContentType("text/html");  
+		response.setCharacterEncoding("UTF-8");
+
+		response.getWriter().write("Grading formats:" + dao.listGradingFormats());
+	}
 }

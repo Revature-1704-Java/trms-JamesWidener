@@ -25,6 +25,14 @@
 		<servlet-name>EmployeeLoginServlet</servlet-name>
 		<servlet-class>com.revature.servlets.EmployeeLoginServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ListGradingFormatsServlet</servlet-name>
+		<servlet-class>com.revature.servlets.ListGradingFormatsServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>InsertEventServlet</servlet-name>
+		<servlet-class>com.revature.servlets.InsertEventServlet</servlet-class>
+	</servlet>
 
 	
 	<servlet-mapping>
@@ -46,6 +54,14 @@
 	<servlet-mapping>
 		<servlet-name>EmployeeLoginServlet</servlet-name>
 		<url-pattern>/employeelogin</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListGradingFormatsServlet</servlet-name>
+		<url-pattern>/listgradingformats</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>InsertEventServlet</servlet-name>
+		<url-pattern>/insertevent</url-pattern>
 	</servlet-mapping>
 
 

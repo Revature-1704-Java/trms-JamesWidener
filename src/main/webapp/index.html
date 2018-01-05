@@ -3,33 +3,14 @@
 <html>
 
 <head>
-	<script src="jsTest.js"></script>
-	<script src="hello.js"></script>
 	<script src="adminLogin.js"></script>
 	<script src="employeeLogin.js"></script>
 	<script src="listEmployees.js"></script>
+	<script src="listGradingFormats.js"></script>
+	<script src="insertEvent.js"></script>
 </head>
 
 <body>
-	<!-- 
-	<h2>Hello World!</h2>
-	
-	<a href=firstservlet>Click to connect to a servlet</a>
-	
-	<div id="jsTestDiv">
-		<form id="jsTestForm">
-			<input type="button" onclick="jsTestFunction()" value="Test JS" />
-		</form>
-	</div>
-	
-	<br/>
-	<form id="helloForm">
-		<label for="nameField">What's your name?</label>
-		<input type="text" id="nameField" />
-		<input type="button" id="helloButton" onclick="helloFunction()" value="Submit" />
-		<br/>
-		<div id="hello_text"></div>
-	</form> -->
 	
 	<h3>Log in as employee</h3>
 	<form>
@@ -44,6 +25,64 @@
 	<div id="employee_login_output"></div>
 	<input type="hidden" id="currentEmployeeEmail" value="" />
 	<input type="hidden" id="currentEmployeePassword" value="" />
+	
+	<br/>
+	<form>
+		<input type="button" id="listGradingFormatsButton" onclick="listGradingFormatsFunction()" value="List all grading formats" />
+	</form>
+	<br/>
+	<div id="list_grading_formats_output"></div>
+	
+	<h3>Submit request for tuition reimbursement</h3>
+	<h5>Enter year, month, and day as numbers, without any letters.</h5>
+	<form>
+		<label for="amountRequested">Amount requested</label>
+		<input type="text" id="amountRequested" required/>
+		<br/>
+		<label for="eventType">Event type</label>
+		<select id="eventType" required>
+			<option value=1>University Course</option>
+			<option value=2>Seminar</option>
+			<option value=3>Certification Preparation Class</option>
+			<option value=4>Certification</option>
+			<option value=5>Technical Training</option>
+			<option value=6>Other</option>
+		</select>
+		<br/>
+		<label for="eventDescription">Description</label>
+		<input type="text" id="eventDescription" required/>
+		<br/>
+		<label for="eventLocation">Location</label>
+		<input type="text" id="eventLocation" required/>
+		<br/>
+		<label for="justification">Work-related justification</label>
+		<input type="text" id="justification" />
+		<br/>
+		<label for="startYear">Year event starts</label>
+		<input type="text" id="startYear" required/>
+		<label for="startMonth">Month event starts</label>
+		<input type="text" id="startMonth" required/>
+		<label for="startDay">Day of the month event starts</label>
+		<input type="text" id="startDay" required/>
+		<br/>
+		<label for="endYear">Year event ends</label>
+		<input type="text" id="endYear" required/>
+		<label for="endMonth">Month event ends</label>
+		<input type="text" id="endMonth" required/>
+		<label for="endDay">Day of the month event ends</label>
+		<input type="text" id="endDay" required/>
+		<br>
+		<label for="hoursMissed">Estimated work hours lost to training</label>
+		<input type="text" id="hoursMissed" />
+		<br>
+		<label for="gradingFormat">Grading format ID#</label>
+		<input type="text" id="gradingFormat" required/>
+		<label for="passingGrade">Passing grade for this course</label>
+		<input type="text" id="passingGrade" />
+		<br/>
+		<input type="button" id="reimbursementSubmit" onclick="insertEventFunction()" value="Submit" />
+	</form>
+	<div id="insert_event_output"></div>
 	
 	<h3>Log in as admin</h3>
 	<form>
