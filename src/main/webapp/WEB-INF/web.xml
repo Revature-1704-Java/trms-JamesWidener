@@ -37,6 +37,10 @@
 		<servlet-name>ListMyRequestsServlet</servlet-name>
 		<servlet-class>com.revature.servlets.ListMyRequestsServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ListWaitingRequestsServlet</servlet-name>
+		<servlet-class>com.revature.servlets.ListWaitingRequestsServlet</servlet-class>
+	</servlet>
 
 	
 	<servlet-mapping>
@@ -70,6 +74,10 @@
 	<servlet-mapping>
 		<servlet-name>ListMyRequestsServlet</servlet-name>
 		<url-pattern>/listmyrequests</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListWaitingRequestsServlet</servlet-name>
+		<url-pattern>/listwaitingrequests</url-pattern>
 	</servlet-mapping>
 
 

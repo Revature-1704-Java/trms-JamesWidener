@@ -9,6 +9,7 @@
 	<script src="listGradingFormats.js"></script>
 	<script src="insertEvent.js"></script>
 	<script src="listMyRequests.js"></script>
+	<script src="listWaitingRequests.js"></script>
 </head>
 
 <body>
@@ -91,6 +92,13 @@
 	</form>
 	<br/>
 	<div id="list_my_requests_output"></div>
+	
+	<br/>
+	<form>
+		<input type="button" id="listWaitingRequestsButton" onclick="listWaitingRequestsFunction()" value="List all TR requests awaiting your approval" />
+	</form>
+	<br/>
+	<div id="list_waiting_requests_output"></div>
 	
 	<h3>Log in as admin</h3>
 	<form>

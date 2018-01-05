@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.dao.TRDAO;
 
-public class ListMyRequestsServlet extends HttpServlet {
+public class ListWaitingRequestsServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -28,6 +28,6 @@ public class ListMyRequestsServlet extends HttpServlet {
 		if (employeeID == -1)
 			response.getWriter().write("Not logged in");
 		else
-			response.getWriter().write(dao.getEmployeeRequests(employeeID));
+			response.getWriter().write(dao.getAwaitingApproval(employeeID));
 	}
 }
