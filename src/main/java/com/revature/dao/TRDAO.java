@@ -32,6 +32,31 @@ public class TRDAO {
 		}
 	}
 	
+	public boolean employeeLogIn(String email, String password) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			
+			String sql = "SELECT EmployeeID FROM Employee WHERE Email = ? AND EmployeePassword = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ps.setString(2, password);
+			
+			rs = ps.executeQuery();
+			
+			if (rs.next())
+				return true;
+			else
+				return false;
+			
+		} catch (Exception ex) {
+			ex.getMessage();
+			ex.printStackTrace();
+			return false;
+		}
+	}
+	
 	public String listAllEmployees() {
 		PreparedStatement ps = null;
 		ResultSet rs = null;

@@ -6,10 +6,12 @@
 	<script src="jsTest.js"></script>
 	<script src="hello.js"></script>
 	<script src="adminLogin.js"></script>
+	<script src="employeeLogin.js"></script>
 	<script src="listEmployees.js"></script>
 </head>
 
 <body>
+	<!-- 
 	<h2>Hello World!</h2>
 	
 	<a href=firstservlet>Click to connect to a servlet</a>
@@ -27,8 +29,23 @@
 		<input type="button" id="helloButton" onclick="helloFunction()" value="Submit" />
 		<br/>
 		<div id="hello_text"></div>
-	</form>
+	</form> -->
 	
+	<h3>Log in as employee</h3>
+	<form>
+		<label for="employeeEmail">Email</label>
+		<input type="text" id="employeeEmail" />
+		<br/>
+		<label for="employeePassword">Password</label>
+		<input type="text" id="employeePassword" />
+		<br/>
+		<input type="button" id="employeeLoginSubmit" onclick="employeeLoginFunction()" value="Submit" />
+	</form>
+	<div id="employee_login_output"></div>
+	<input type="hidden" id="currentEmployeeEmail" value="" />
+	<input type="hidden" id="currentEmployeePassword" value="" />
+	
+	<h3>Log in as admin</h3>
 	<form>
 		<label for="adminUsername">Username</label>
 		<input type="text" id="adminUsername" />
@@ -38,8 +55,10 @@
 		<br/>
 		<input type="button" id="adminLoginSubmit" onclick="adminLoginFunction()" value="Submit" />
 		<br/>
-		<div id="admin_login_output"></div>
 	</form>
+	<div id="admin_login_output"></div>
+	<input type="hidden" id="currentAdminUsername" value="" />
+	<input type="hidden" id="currentAdminPassword" value="" />
 	
 	<br/>
 	<form>

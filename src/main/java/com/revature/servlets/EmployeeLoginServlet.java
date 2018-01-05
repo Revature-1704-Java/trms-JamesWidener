@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.dao.TRDAO;
 
-public class AdminLoginServlet extends HttpServlet {
+public class EmployeeLoginServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -17,7 +17,7 @@ public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
+		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
 		TRDAO dao = new TRDAO();
@@ -25,11 +25,11 @@ public class AdminLoginServlet extends HttpServlet {
 		response.setContentType("text/html");  
 		response.setCharacterEncoding("UTF-8"); 
 		
-		if (dao.adminLogIn(username, password)) {
-			response.getWriter().write("Welcome, " + username + ".");
+		if (dao.employeeLogIn(email, password)) {
+			response.getWriter().write("Logged in.");
 		}
 		else
-			response.getWriter().write("Wrong username or password: \"" + username + "\" \"" + password + "\"");
+			response.getWriter().write("Wrong email or password: \"" + email + "\" \"" + password + "\"");
 	}
 
 }

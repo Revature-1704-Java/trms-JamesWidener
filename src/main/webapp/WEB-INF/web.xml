@@ -17,10 +17,15 @@
 		<servlet-name>AdminLoginServlet</servlet-name>
 		<servlet-class>com.revature.servlets.AdminLoginServlet</servlet-class>
 	</servlet>
-		<servlet>
+	<servlet>
 		<servlet-name>ListEmployeesServlet</servlet-name>
 		<servlet-class>com.revature.servlets.ListEmployeesServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>EmployeeLoginServlet</servlet-name>
+		<servlet-class>com.revature.servlets.EmployeeLoginServlet</servlet-class>
+	</servlet>
+
 	
 	<servlet-mapping>
 		<servlet-name>FirstServlet</servlet-name>
@@ -37,6 +42,10 @@
 	<servlet-mapping>
 		<servlet-name>ListEmployeesServlet</servlet-name>
 		<url-pattern>/listemployees</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmployeeLoginServlet</servlet-name>
+		<url-pattern>/employeelogin</url-pattern>
 	</servlet-mapping>
 
 
