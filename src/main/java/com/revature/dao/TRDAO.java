@@ -308,4 +308,124 @@ public class TRDAO {
 			ex.printStackTrace();
 		}
 	}
+	
+	public String approve(int employeeID, int givenRequest) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		PreparedStatement ps2 = null;
+		ResultSet rs2 = null;
+		PreparedStatement ps3 = null;
+		ResultSet rs3 = null;
+		PreparedStatement ps4 = null;
+		ResultSet rs4 = null;
+		PreparedStatement ps5 = null;
+		ResultSet rs5 = null;
+		PreparedStatement ps6 = null;
+		ResultSet rs6 = null;
+		PreparedStatement ps7 = null;
+		ResultSet rs7 = null;
+		PreparedStatement ps8 = null;
+		ResultSet rs8 = null;
+		PreparedStatement psx = null;
+		ResultSet rsx = null;
+		
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String requestInfo = "";
+			boolean isBenCo = false;
+			ArrayList<Integer> employeesSupervised = new ArrayList<>();
+			ArrayList<Integer> departments = new ArrayList<>();
+			ArrayList<Integer> departmentEmployees = new ArrayList<>();
+			ArrayList<Integer> supervisorRequests = new ArrayList<>();
+			ArrayList<Integer> departmentRequests = new ArrayList<>();
+			ArrayList<Integer> bencoRequests = new ArrayList<>();
+			
+			String sql = "SELECT EmployeeID FROM Employee WHERE DirectSupervisor = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, employeeID);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				employeesSupervised.add(rs.getInt("EmployeeID"));
+			}
+			
+			String sql2 = "SELECT DHDepartment FROM DepartmentHead WHERE DHEmployee = ?";
+			ps2 = conn.prepareStatement(sql2);
+			ps2.setInt(1, employeeID);
+			rs2 = ps2.executeQuery();
+			while (rs2.next()) {
+				departments.add(rs2.getInt("DHDepartment"));
+			}
+			
+			String sql3 = "SELECT BenCoID FROM BenCo WHERE BenCoEmployee = ?";
+			ps3 = conn.prepareStatement(sql3);
+			ps3.setInt(1, employeeID);
+			rs3 = ps3.executeQuery();
+			while (rs3.next()) {
+				isBenCo = true;
+			}
+			
+			for (int i = 0; i < employeesSupervised.size(); i++) {
+				String sql4 = "SELECT RequestID FROM Request WHERE Employee = ? AND RequestState = 'Submitted'";
+				ps4 = conn.prepareStatement(sql4);
+				ps4.setInt(1, employeesSupervised.get(i));
+				rs4 = ps4.executeQuery();
+				while (rs4.next()) {
+					supervisorRequests.add(rs4.getInt("RequestID"));
+				}
+			}
+			
+			for (int i = 0; i < departments.size(); i++) {
+				String sql5 = "SELECT EmployeeID FROM Employee WHERE Department = ?";
+				ps5 = conn.prepareStatement(sql5);
+				ps5.setInt(1, departments.get(i));
+				rs5 = ps5.executeQuery();
+				while (rs5.next()) {
+					departmentEmployees.add(rs5.getInt("EmployeeID"));
+				}
+			}
+			
+			for (int i = 0; i < departmentEmployees.size(); i++) {
+				String sql6 = "SELECT RequestID FROM Request WHERE Employee = ? AND RequestState = 'DepHead'";
+				ps6 = conn.prepareStatement(sql6);
+				ps6.setInt(1, departmentEmployees.get(i));
+				rs6 = ps6.executeQuery();
+				while (rs6.next()) {
+					departmentRequests.add(rs6.getInt("RequestID"));
+				}
+			}
+			
+			if (isBenCo) {
+				String sql7 = "SELECT RequestID FROM Request WHERE RequestState = 'BenCo'";
+				ps7 = conn.prepareStatement(sql7);
+				rs7 = ps7.executeQuery();
+				while (rs7.next()) {
+					bencoRequests.add(rs7.getInt("RequestID"));
+				}
+			}
+				
+			if (supervisorRequests.contains(givenRequest)) {
+				String sqlx = "UPDATE Request SET RequestState = 'DepHead' WHERE RequestID = ?";
+				psx = conn.prepareStatement(sqlx);
+				psx.setInt(1, givenRequest);
+				psx.executeUpdate();
+			}
+			if (departmentRequests.contains(givenRequest)) {
+				String sqlx = "UPDATE Request SET RequestState = 'BenCo' WHERE RequestID = ?";
+				psx = conn.prepareStatement(sqlx);
+				psx.setInt(1, givenRequest);
+				psx.executeUpdate();
+			}
+			if (bencoRequests.contains(givenRequest)) {
+				String sqlx = "UPDATE Request SET RequestState = 'Pending' WHERE RequestID = ?";
+				psx = conn.prepareStatement(sqlx);
+				psx.setInt(1, givenRequest);
+				psx.executeUpdate();
+			}
+			
+			return requestInfo;
+		} catch (Exception ex) {
+			ex.getMessage();
+			ex.printStackTrace();
+			return "Exception thrown";
+		}
+	}
 }

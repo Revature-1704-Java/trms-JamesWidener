@@ -41,6 +41,10 @@
 		<servlet-name>ListWaitingRequestsServlet</servlet-name>
 		<servlet-class>com.revature.servlets.ListWaitingRequestsServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ApproveServlet</servlet-name>
+		<servlet-class>com.revature.servlets.ApproveServlet</servlet-class>
+	</servlet>
 
 	
 	<servlet-mapping>
@@ -78,6 +82,10 @@
 	<servlet-mapping>
 		<servlet-name>ListWaitingRequestsServlet</servlet-name>
 		<url-pattern>/listwaitingrequests</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ApproveServlet</servlet-name>
+		<url-pattern>/approve</url-pattern>
 	</servlet-mapping>
 
 

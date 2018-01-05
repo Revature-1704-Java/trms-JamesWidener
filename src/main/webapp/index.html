@@ -10,6 +10,7 @@
 	<script src="insertEvent.js"></script>
 	<script src="listMyRequests.js"></script>
 	<script src="listWaitingRequests.js"></script>
+	<script src="approve.js"></script>
 </head>
 
 <body>
@@ -96,6 +97,15 @@
 	<br/>
 	<form>
 		<input type="button" id="listWaitingRequestsButton" onclick="listWaitingRequestsFunction()" value="List all TR requests awaiting your approval" />
+	</form>
+	<br/>
+	<div id="list_waiting_requests_output"></div>
+	
+	<br/>
+	<form>
+		<label for="approveRequest">ID of request to approve</label>
+		<input type="text" id="approveRequest" required/>
+		<input type="button" id="approveButton" onclick="approveFunction()" value="Approve" />
 	</form>
 	<br/>
 	<div id="list_waiting_requests_output"></div>
