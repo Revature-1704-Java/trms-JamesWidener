@@ -120,23 +120,19 @@ public class TRDAO {
 		
 		try (Connection conn = ConnectionUtil.getConnection()) {
 			
-			String sql = "INSERT INTO Event (EventLocation, TrainingTimeStart, TrainingTimeEnd, "
+			String sql = "INSERT INTO Request (EventLocation, TrainingTimeStart, TrainingTimeEnd, "
 					+ "EstimatedWorkHoursMissed, EventDescription, EventType, "
-					+ "GradingFormat, PassingGrade, Employee, AmountRequested, Justification, TimeSubmitted) "
+					+ "GradingFormat, PassingGrade, Employee, AmountRequested, Justification, TimeRequestSent) "
 					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			ps = conn.prepareStatement(sql);
-			
-			String startDate = "TO_DATE('" + startDay + "/" + startMonth + "/" + startYear + "', 'DD/MM/YYYY')";
-			String endDate = "TO_DATE('" + endDay + "/" + endMonth + "/" + endYear + "', 'DD/MM/YYYY')";
-			String currentTime = "SYSDATE";
 			
 			location = location.replace('_', ' ');
 			description = description.replace('_', ' ');
 			justification = justification.replace('_', ' ');
 			
 			ps.setString(1, location);
-			ps.setString(2, startDate);
-			ps.setString(3, endDate);
+			ps.setDate(2, java.sql.Date.valueOf(startYear + '-' + startMonth + '-' + startDay));
+			ps.setDate(3, java.sql.Date.valueOf(endYear + '-' + endMonth + '-' + endDay));
 			ps.setString(4, hoursMissed);
 			ps.setString(5, description);
 			ps.setString(6, eventType);
@@ -145,7 +141,7 @@ public class TRDAO {
 			ps.setString(9, employee);
 			ps.setString(10, amountRequested);
 			ps.setString(11, justification);
-			ps.setString(12, currentTime);
+			ps.setDate(12, java.sql.Date.valueOf(java.time.LocalDate.now()));
 			
 			ps.executeUpdate();
 
