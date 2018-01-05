@@ -3,6 +3,7 @@ package com.revature.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.revature.util.ConnectionUtil;
 
@@ -104,6 +105,40 @@ public class TRDAO {
 				allFormats += "<br/>Default passing grade: " + rs.getString("DefaultPassingGrade");
 			}
 			return allFormats;
+		} catch (Exception ex) {
+			ex.getMessage();
+			ex.printStackTrace();
+			return "Exception thrown";
+		}
+	}
+	
+	public String getEmployeeRequests(int employeeID) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String sql = "SELECT EventLocation, TrainingTimeStart, TrainingTimeEnd, EventType, EventDescription, GradingFormat, "
+					+ "PassingGrade, AmountRequested, Justification, TimeRequestSent, RequestState FROM Request WHERE Employee = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, employeeID);
+			rs = ps.executeQuery();
+			
+			String requestInfo = "";
+			
+			while (rs.next()) {
+				requestInfo += "<br/>Event type ID: " + rs.getInt("EventType");
+				requestInfo += "<br>Amount requested: " + rs.getInt("AmountRequested");
+				requestInfo += "<br/>Description: " + rs.getString("EventDescription");
+				requestInfo += "<br/>Location: " + rs.getString("EventLocation");
+				requestInfo += "<br/>Justification: " + rs.getString("Justification");
+				requestInfo += "<br/>Start date: " + rs.getDate("TrainingTimeStart");
+				requestInfo += "<br/>End date: " + rs.getDate("TrainingTimeEnd");
+				requestInfo += "<br/>Grading format ID: " + rs.getInt("GradingFormat");
+				requestInfo += "<br/>Passing grade: " + rs.getInt("PassingGrade");
+				requestInfo += "<br/>Time request was made: " + rs.getDate("TimeRequestSent");
+				requestInfo += "<br/>Status: " + rs.getString("RequestState");
+			}
+			return requestInfo;
 		} catch (Exception ex) {
 			ex.getMessage();
 			ex.printStackTrace();

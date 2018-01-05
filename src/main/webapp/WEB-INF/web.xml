@@ -33,6 +33,10 @@
 		<servlet-name>InsertEventServlet</servlet-name>
 		<servlet-class>com.revature.servlets.InsertEventServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ListMyRequestsServlet</servlet-name>
+		<servlet-class>com.revature.servlets.ListMyRequestsServlet</servlet-class>
+	</servlet>
 
 	
 	<servlet-mapping>
@@ -62,6 +66,10 @@
 	<servlet-mapping>
 		<servlet-name>InsertEventServlet</servlet-name>
 		<url-pattern>/insertevent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListMyRequestsServlet</servlet-name>
+		<url-pattern>/listmyrequests</url-pattern>
 	</servlet-mapping>
 
 

@@ -8,6 +8,7 @@
 	<script src="listEmployees.js"></script>
 	<script src="listGradingFormats.js"></script>
 	<script src="insertEvent.js"></script>
+	<script src="listMyRequests.js"></script>
 </head>
 
 <body>
@@ -83,6 +84,13 @@
 		<input type="button" id="reimbursementSubmit" onclick="insertEventFunction()" value="Submit" />
 	</form>
 	<div id="insert_event_output"></div>
+	
+	<br/>
+	<form>
+		<input type="button" id="listMyRequestsButton" onclick="listMyRequestsFunction()" value="List all TR requests you've made" />
+	</form>
+	<br/>
+	<div id="list_my_requests_output"></div>
 	
 	<h3>Log in as admin</h3>
 	<form>
